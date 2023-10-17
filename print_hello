@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Function to handle the SIGINT signal
+cleanup() {
+  echo "Script interrupted. Cleaning up..."
+  # Add any cleanup tasks here if needed
+  exit 0
+}
+
+# Register the cleanup function to be called when SIGINT is received
+trap "cleanup" SIGINT
+
+# Run the script in a detached subshell
+(while true; do echo "hello $(date)"; sleep 1; done) > /tmp/hello.log 2>&1 &
+
+# Disown the subshell to detach it from the parent shell
+disown
+
+# Exit the parent shell
+exit
