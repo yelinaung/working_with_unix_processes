@@ -1,5 +1,5 @@
 #!/bin/bash
-#
+
 fancy_echo () {
     # this just prints the message with a timestamp
     msg=$1
